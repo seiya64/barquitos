@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1><small>Lista de las partidas empezadas</small></h1>
+    {% for par in partidas1 %}
+    <p><a href="{% url web_partida par.id %}">{{par}}</a>
+    {% if par.turno == 0 %}
+    Te toca
+    {% endif %}
+    </p>
+    {% endfor %}
+    {% for par in partidas2 %}
+    <p><a href="{% url web_partida par.id %}">{{par}}</a>
+    {% if par.turno == 0 %}
+    Te toca
+    {% endif %}
+    </p>
+    {% endfor %}
+{% endblock %}
+{% block extra_js %}
+    
+{% endblock %}

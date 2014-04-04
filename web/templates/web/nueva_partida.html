@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1><small>Reta a un amigo para empezar una partida</small></h1>
+    <div>{% crispy form %}</div>
+{% endblock %}
+{% block extra_js %}
+    <script type="text/javascript">
+        var url_nueva_peticion_partida = "{% url servidor_peticion_nueva_partida %}";
+    </script>
+    <script type="text/javascript" charset="utf-8" src="{{STATIC_URL}}web/js/funciones_peticiones.js"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+.agua {
+    background-color: blue;
+}
+
+.barco {
+    /*background-color: gray;*/
+    background-img: url('/barcos/static/web/img/barcos/medio.svg');
+}
+
+.tocado {
+    background-color: coral;
+}
+
+.mar {
+    background-color: aqua;
+}
+
+.vacio {
+    background-color: brown;
+}

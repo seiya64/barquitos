@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}web/css/tablero.css">
+{% endblock %}
+{% block titulo %}
+    {% if jugador == 1 %}
+    Partida contra {{partida.oponente}}
+    {% else %}
+    Partida contra {{partida.usuario}}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="span5">
+    <h1><small>Tablero de ataque</small></h1>
+    <p id="tablero_ataque"></p>
+    <p id="turno"><p>
+    </div>
+    <div class="span5">
+    <h1><small>Mi tablero</small></h1>
+    <p id="tablero"></p>
+    <a class="btn btn-danger" href="javascript:abandonar()">Rendirse</a>
+    </div>
+    
+{% endblock %}
+{% block extra_js %}
+    <script type="text/javascript">
+        var url_obtener_tableros = "{% url servidor_obtener_tableros partida.id%}";
+        var url_atacar = "{% url servidor_atacar partida.id%}";
+        var url_abandonar = "{% url servidor_abandonar partida.id%}";
+    </script>
+    <script type="text/javascript" charset="utf-8" src="{{STATIC_URL}}web/js/funciones_tableros.js"></script>
+{% endblock %}

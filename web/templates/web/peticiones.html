@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1><small>Lista de las peticiones recibidas</small></h1>
+    {% for pet in peticiones %}
+    <p>El {{pet.fecha_peticion}} te han retado a un {{pet}}</p>
+    {% if pet.estado == 0 %}
+    <p id="idpet{{pet.id}}"><a href="#" class="btn btn-success" onclick="enviar_respuesta_peticion('{{pet.id}}','Aceptar')" >Aceptar</a> <a href="#" class="btn btn-danger" onclick="enviar_respuesta_peticion('{{pet.id}}','Rechazar')" >Rechazar</a></p>
+    {% elif pet.estado == 1 %}
+    <p class="text-success">Aceptada</p>
+    {% elif pet.estado == 2 %}
+    <p class="text-error">Rechazada</p>
+    {% endif %}
+    {% endfor %}
+    
+    <h1><small>Lista de las peticiones enviadas</small></h1>
+    {% for pet in peticiones_enviadas %}
+    <p>El {{pet.fecha_peticion}} has retado a un {{pet}}</p>
+    {% if pet.estado == 0 %}
+    <p  class="text-info">Esperando</p>
+    {% elif pet.estado == 1 %}
+    <p class="text-success">Aceptada</p>
+    {% elif pet.estado == 2 %}
+    <p class="text-error">Rechazada</p>
+    {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block extra_js %}
+    <script type="text/javascript">
+        var url_tramitar_peticion_partida = "{% url servidor_tramitar_peticiones_partidas %}";
+    </script>
+    <script type="text/javascript" charset="utf-8" src="{{STATIC_URL}}web/js/funciones_peticiones.js"></script>
+{% endblock %}

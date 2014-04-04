@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Puntuación</th>
+            <th>Ganadas</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{usuario.user}}</td>
+            <td>{{usuario.puntuacion}}</td>
+            <td>{{usuario.ganadas}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+{% block extra_js %}
+    
+{% endblock %}

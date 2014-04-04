@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>{% block titulaco %}Barquitos{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.min.css">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="{% url barquitos_home %}">Barquitos - Poner Logo</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="{% url barquitos_home %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url web_peticiones %}">Peticiones</a></li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Jugar</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url web_nueva_partida %}">Nueva partida</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url web_partidas_empezadas %}">Partidas empezadas</a></li>
+                            <li><a href="#">Partidas terminadas</a></li>
+                            <li><a href="#">Estadísticas</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Clasificación</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url web_clasificacion %}">General</a></li>
+                            {% if user.is_authenticated %}
+                            <li class="divider"></li>
+                            <li><a href="#">Ganadas</a></li>
+                            <li><a href="#">Perdidas</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url auth_logout %}">Salir</a></li>
+                    {% else %}
+                    <li><a href="{% url auth_login %}">Entrar</a></li>
+                    <li><a href="{% url web_nuevo_usuario %}">Registrarse</a></li>
+                    {% endif %}
+                </ul>
+            </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <!-- el cuerpo -->
+    <div class="container">
+        <div class="">
+            <h1>{% block titulo %}{{titulo}}{% endblock %}</h1>
+            <p><hr/></p>
+            {% block content %}
+            <h1><small>Home de los Barquirtos Online</small></h1>
+            <p>Bienvenido {{user.username}}</p>
+            {% endblock %}
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8" src="{{STATIC_URL}}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/jquery.bootstrap-growl.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
